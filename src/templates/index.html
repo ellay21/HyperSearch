@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Engine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            padding: 10px;
+            width: 300px;
+        }
+        button {
+            padding: 10px;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Engine</h1>
+    <form method="POST">
+        <input type="text" name="query" placeholder="Enter search query" required value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if results %}
+        <div class="result">
+            <h2>Results:</h2>
+            <ul>
+                {% for result in results %}
+                    <li><strong>{{ result["title"] }}</strong></li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% elif query %}
+        <p>No results found.</p>
+    {% endif %}
+</body>
+</html>
